@@ -1,16 +1,218 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl">
 <head>
-    <title>Astar's Bijbelboek</title>
+    <meta charset="UTF-8">
+    <title>Bijbel Plezier</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ccecff; /* lichtblauw */
+            color: #333;
+        }
+
+        .page-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 1rem 0.5rem;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.3rem;
+            font-weight: bold;
+            color: #1b3d6d;
+        }
+
+        header p {
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Regenboog */
+        .rainbow-box {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .rainbow-img {
+            width: 280px;
+            max-width: 80%;
+        }
+
+        /* Boekensectie */
+        .books-section {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .books-title {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            color: #174c85;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.5rem;
+            padding: 0 1.5rem;
+        }
+
+        .book-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 1rem;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .book-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .book-card h3 {
+            font-size: 1.1rem;
+            margin-top: 0.7rem;
+            color: #1b3d6d;
+        }
+
+        /* Contactformulier */
+        main {
+            display: flex;
+            justify-content: center;
+            padding: 2rem 1rem 3rem;
+        }
+
+        .form-card {
+            background: #ffffff;
+            max-width: 430px;
+            width: 100%;
+            padding: 1.8rem 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-card h2 {
+            margin-top: 0;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.6rem 0.7rem;
+            border-radius: 8px;
+            border: 1px solid #b0c4de;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 999px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+    </style>
 </head>
+
 <body>
+<div class="page-wrapper">
 
-    <h1>Hartelijk welkom bij Astar's Bijbelboek</h1>
-    <h3>Pre-order nu en krijg 10%!</h3>
+    <header>
+        <h1>Bijbel Plezier</h1>
+        <p>"Leer de kinderen de weg die zij moeten gaan." – Spreuken 22:6</p>
 
-    <img src="{{ url_for('static', filename='foto.jpeg') }}" 
-         alt="Foto"
-         style="width:300px;">
+        <!-- Regenboog afbeelding -->
+        <div class="rainbow-box">
+            <img src="{{ url_for('static', filename='img/rainbow.png') }}" class="rainbow-img" alt="Regenboog">
+        </div>
+    </header>
 
+    <!-- Boeken Sectie -->
+    <section class="books-section">
+        <h2 class="books-title">Onze Bijbelse Kinderboeken</h2>
+
+        <div class="books-grid">
+
+            <div class="book-card">
+                <img src="{{ url_for('static', filename='img/books/boek_jezus.png') }}" alt="Kleurboek Jezus">
+                <h3>Kleurboek – Het leven van Jezus</h3>
+            </div>
+
+            <div class="book-card">
+                <img src="{{ url_for('static', filename='img/books/boek_spelen_bijbel.png') }}" alt="Spelen en leren met de Bijbel">
+                <h3>Spelen en leren met de Bijbel (5–6 jaar)</h3>
+            </div>
+
+            <div class="book-card">
+                <img src="{{ url_for('static', filename='img/books/boek_alfabet.png') }}" alt="Alfabetboek">
+                <h3>Het Bijbelse Alfabet – Kleurboek</h3>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contactformulier -->
+    <main>
+        <div class="form-card">
+            <h2>Contact</h2>
+            <p>Heb je vragen of wil je boeken bestellen? Stuur gerust een bericht.</p>
+
+            <form method="post" action="{{ url_for('home') }}">
+                <div class="form-group">
+                    <label>E-mail*</label>
+                    <input type="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Telefoonnummer</label>
+                    <input type="tel" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label>Bericht*</label>
+                    <textarea name="message" required></textarea>
+                </div>
+
+                <button type="submit">Verzend bericht</button>
+            </form>
+        </div>
+    </main>
+
+</div>
 </body>
 </html>
