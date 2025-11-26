@@ -1,69 +1,79 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request
 import os
 import smtplib
+import ssl
 from email.message import EmailMessage
 
 app = Flask(__name__)
-app.secret_key = "een_goed_geheim_woord"  # nodig voor flash-berichten
+
+# -------------------------
+#  E-MAIL INSTELLINGEN
+# -------------------------
+
+EMAIL_ADDRESS = "kucunlinda@gmail.com"
+# Stel dit in als omgevingsvariabele VOORDAT je Flask start
+EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 
 
-def send_contact_email(email, phone, message):
-    """
-    Stuurt een e-mail naar kucunlinda@gmail.com met de gegevens uit het formulier.
-    Zorg dat je omgevingsvariabelen EMAIL_USER en EMAIL_PASS hebt ingesteld.
-    """
-    sender = os.environ.get("EMAIL_USER")
-    password = os.environ.get("EMAIL_PASS")
-
-    if not sender or not password:
-        # Tijdens ontwikkeling kun je dit in de console zien
-        print("EMAIL_USER of EMAIL_PASS niet ingesteld.")
-        print("Bericht dat verstuurd zou worden:")
-        print("Van:", email)
-        print("Telefoon:", phone)
-        print("Bericht:", message)
-        return
+def send_contact_email(data: dict):
+    """Verstuur een mail met de inhoud van het contactformulier."""
+    if not EMAIL_PASSWORD:
+        # In ontwikkeling: fout gooien zodat je ziet wat er mis is
+        raise RuntimeError(
+            "EMAIL_PASSWORD omgevingsvariabele niet ingesteld. "
+            "Maak een Gmail app-wachtwoord en stel deze in."
+        )
 
     msg = EmailMessage()
-    msg["Subject"] = "Nieuw bericht via Bijbel Plezier website"
-    msg["From"] = sender
-    msg["To"] = "kucunlinda@gmail.com"
+    msg["Subject"] = f"Nieuw bericht via Bijbelplezier van {data['first_name']} {data['last_name']}"
+    msg["From"] = EMAIL_ADDRESS
+    msg["To"] = EMAIL_ADDRESS
 
-    body = f"""
-Er is een nieuw bericht binnengekomen via het contactformulier van Bijbel Plezier.
-
-E-mail bezoeker: {email}
-Telefoonnummer: {phone}
-
-Bericht:
-{message}
-"""
+    body = (
+        f"Er is een nieuw bericht via het contactformulier:\n\n"
+        f"Naam: {data['first_name']} {data['last_name']}\n"
+        f"E-mail: {data['email']}\n"
+        f"Telefoonnummer: {data['phone']}\n\n"
+        f"Bericht:\n{data['message']}\n"
+    )
     msg.set_content(body)
 
-    # Voor Gmail:
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
-        smtp.login(sender, password)
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as smtp:
+        smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
         smtp.send_message(msg)
 
 
+# -------------------------
+#  ROUTE
+# -------------------------
+
 @app.route("/", methods=["GET", "POST"])
 def home():
+    success_message = None
+    error_message = None
+
     if request.method == "POST":
-        email = request.form.get("email")
-        phone = request.form.get("phone")
-        message = request.form.get("message")
+        form_data = {
+            "first_name": request.form.get("first_name", "").strip(),
+            "last_name": request.form.get("last_name", "").strip(),
+            "email": request.form.get("email", "").strip(),
+            "phone": request.form.get("phone", "").strip(),
+            "message": request.form.get("message", "").strip(),
+        }
 
-        # Eenvoudige validatie
-        if not email or not message:
-            flash("Vul minstens e-mail en bericht in, alsjeblieft.")
-            return redirect(url_for("home"))
+        try:
+            send_contact_email(form_data)
+            success_message = "Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op."
+        except Exception:
+            error_message = "Er ging iets mis bij het verzenden van je bericht. Probeer het later opnieuw."
 
-        send_contact_email(email, phone, message)
-        flash("Bedankt! Je bericht is verstuurd.")
-        return redirect(url_for("home"))
-
-    return render_template("home.html")
+    return render_template(
+        "home.html",
+        success_message=success_message,
+        error_message=error_message,
+    )
 
 
 if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+    app.run(debug=True)

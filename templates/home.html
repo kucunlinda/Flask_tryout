@@ -2,217 +2,148 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>Bijbel Plezier</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #ccecff; /* lichtblauw */
-            color: #333;
-        }
-
-        .page-wrapper {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        header {
-            text-align: center;
-            padding: 2rem 1rem 0.5rem;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.3rem;
-            font-weight: bold;
-            color: #1b3d6d;
-        }
-
-        header p {
-            margin-top: 0.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        /* Regenboog */
-        .rainbow-box {
-            display: flex;
-            justify-content: center;
-            margin-top: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .rainbow-img {
-            width: 280px;
-            max-width: 80%;
-        }
-
-        /* Boekensectie */
-        .books-section {
-            padding: 1rem;
-            text-align: center;
-        }
-
-        .books-title {
-            font-size: 1.6rem;
-            margin-bottom: 1.5rem;
-            font-weight: bold;
-            color: #174c85;
-        }
-
-        .books-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 1.5rem;
-            padding: 0 1.5rem;
-        }
-
-        .book-card {
-            background: #fff;
-            border-radius: 15px;
-            padding: 1rem;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-        }
-
-        .book-card img {
-            width: 100%;
-            border-radius: 10px;
-        }
-
-        .book-card h3 {
-            font-size: 1.1rem;
-            margin-top: 0.7rem;
-            color: #1b3d6d;
-        }
-
-        /* Contactformulier */
-        main {
-            display: flex;
-            justify-content: center;
-            padding: 2rem 1rem 3rem;
-        }
-
-        .form-card {
-            background: #ffffff;
-            max-width: 430px;
-            width: 100%;
-            padding: 1.8rem 1.5rem;
-            border-radius: 16px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-        }
-
-        .form-card h2 {
-            margin-top: 0;
-            text-align: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.3rem;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 0.6rem 0.7rem;
-            border-radius: 8px;
-            border: 1px solid #b0c4de;
-            font-size: 0.95rem;
-            box-sizing: border-box;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        button {
-            width: 100%;
-            padding: 0.8rem;
-            border: none;
-            border-radius: 999px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            background: linear-gradient(to right, #ff9a9e, #fad0c4);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        }
-    </style>
+    <title>Bijbelplezier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
-<div class="page-wrapper">
 
-    <header>
-        <h1>Bijbel Plezier</h1>
-        <p>"Leer de kinderen de weg die zij moeten gaan." – Spreuken 22:6</p>
+<div class="page">
 
-        <!-- Regenboog afbeelding -->
-        <div class="rainbow-box">
-            <img src="{{ url_for('static', filename='img/rainbow.png') }}" class="rainbow-img" alt="Regenboog">
+    <!-- HERO -->
+    <header class="hero">
+        <img class="hero-full-rainbow" src="{{ url_for('static', filename='img/regenboog.png') }}" alt="Regenboog">
+
+        <div class="hero-overlay">
+            <h1 class="hero-title">Bijbelplezier</h1>
+            <h2 class="hero-subtitle">Spelen en leren met de Bijbel</h2>
         </div>
     </header>
 
-    <!-- Boeken Sectie -->
-    <section class="books-section">
-        <h2 class="books-title">Onze Bijbelse Kinderboeken</h2>
-
-        <div class="books-grid">
-
-            <div class="book-card">
-                <img src="{{ url_for('static', filename='img/books/boek_jezus.png') }}" alt="Kleurboek Jezus">
-                <h3>Kleurboek – Het leven van Jezus</h3>
-            </div>
-
-            <div class="book-card">
-                <img src="{{ url_for('static', filename='img/books/boek_spelen_bijbel.png') }}" alt="Spelen en leren met de Bijbel">
-                <h3>Spelen en leren met de Bijbel (5–6 jaar)</h3>
-            </div>
-
-            <div class="book-card">
-                <img src="{{ url_for('static', filename='img/books/boek_alfabet.png') }}" alt="Alfabetboek">
-                <h3>Het Bijbelse Alfabet – Kleurboek</h3>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Contactformulier -->
     <main>
-        <div class="form-card">
-            <h2>Contact</h2>
-            <p>Heb je vragen of wil je boeken bestellen? Stuur gerust een bericht.</p>
 
-            <form method="post" action="{{ url_for('home') }}">
-                <div class="form-group">
-                    <label>E-mail*</label>
-                    <input type="email" name="email" required>
-                </div>
+        <!-- BOEKEN -->
+        <section class="books-section">
+            <h3 class="section-title">Ontdek onze boeken</h3>
 
-                <div class="form-group">
-                    <label>Telefoonnummer</label>
-                    <input type="tel" name="phone">
-                </div>
+            <div class="books-grid">
 
-                <div class="form-group">
-                    <label>Bericht*</label>
-                    <textarea name="message" required></textarea>
-                </div>
+                <!-- BOEK 1 -->
+                <article class="book-card" onclick="toggleDescription('book1')">
+                    <div class="book-cover-wrapper">
+                        <img class="book-cover"
+                             src="{{ url_for('static', filename='img/books/1.png') }}"
+                             alt="Boek 1">
+                    </div>
+                    <h4 class="book-title">Boek 1 – Spelen en leren met de Bijbel (7–8 jaar)</h4>
+                    <div id="book1" class="book-description">
+                        <p>
+                            In dit bijzondere oefenboekje staat de Bijbel centraal.
+                        </p>
+                        <ul>
+                            <li>Optellen en aftrekken</li>
+                            <li>Hoofletters leren</li>
+                            <li>Vermenigvuldigen</li>
+                            <li>Correct schrijven</li>
+                        </ul>
+                    </div>
+                </article>
 
-                <button type="submit">Verzend bericht</button>
-            </form>
-        </div>
+                <!-- BOEK 2 -->
+                <article class="book-card" onclick="toggleDescription('book2')">
+                    <div class="book-cover-wrapper">
+                        <img class="book-cover"
+                             src="{{ url_for('static', filename='img/books/2.png') }}"
+                             alt="Boek 2">
+                    </div>
+                    <h4 class="book-title">Boek 2 – Spelen en leren met de Bijbel (5–6 jaar)</h4>
+                    <div id="book2" class="book-description">
+                        <p>Speels leren met Bijbelse opdrachten.</p>
+                    </div>
+                </article>
+
+                <!-- BOEK 3 -->
+                <article class="book-card" onclick="toggleDescription('book3')">
+                    <div class="book-cover-wrapper">
+                        <img class="book-cover"
+                             src="{{ url_for('static', filename='img/books/3.png') }}"
+                             alt="Boek 3">
+                    </div>
+                    <h4 class="book-title">Boek 3 – Bijbels ABC-kleurboek</h4>
+                    <div id="book3" class="book-description">
+                        <p>
+                            Leren, kleuren en schrijven in één.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- BOEK 4 -->
+                <article class="book-card" onclick="toggleDescription('book4')">
+                    <div class="book-cover-wrapper">
+                        <img class="book-cover"
+                             src="{{ url_for('static', filename='img/books/4.png') }}"
+                             alt="Boek 4">
+                    </div>
+                    <h4 class="book-title">Boek 4 – Kleur het leven van Jezus</h4>
+                    <div id="book4" class="book-description">
+                        <p>Ontdek het leven van Jezus.</p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="contact-section">
+            <h3 class="section-title">Neem contact op</h3>
+
+            <div class="contact-card">
+                <form class="contact-form" method="post" action="/">
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label>Voornaam</label>
+                            <input type="text" name="first_name" required>
+                        </div>
+                        <div class="form-field">
+                            <label>Achternaam</label>
+                            <input type="text" name="last_name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label>E-mail</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form-field">
+                            <label>Telefoonnummer</label>
+                            <input type="tel" name="phone">
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label>Bericht</label>
+                        <textarea name="message" rows="4" required></textarea>
+                    </div>
+
+                    <button class="btn-submit" type="submit">Verzenden</button>
+                </form>
+            </div>
+        </section>
+
     </main>
 
 </div>
+
+<script>
+    function toggleDescription(id) {
+        const t = document.getElementById(id);
+        document.querySelectorAll('.book-description').forEach(d => {
+            if (d !== t) d.style.display = 'none';
+        });
+        t.style.display = t.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+
 </body>
 </html>
