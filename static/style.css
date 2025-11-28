@@ -1,20 +1,59 @@
 /* BASIS */
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
     padding: 0;
     font-family: "Comic Sans MS", Arial, sans-serif;
     background: #eaf6ff;
+    color: #222;
 }
 
-/* HERO */
+/* ====== TOP NAVIGATIE ====== */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: #f5fbff;
+    border-bottom: 1px solid #d3e4f5;
+    padding: 8px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.shop-logo {
+    font-weight: 800;
+    font-size: 1.4rem;
+}
+
+.main-nav {
+    display: flex;
+    gap: 16px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #064273;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+}
+
+.nav-link:hover,
+.nav-link-active {
+    background: #e0f2ff;
+}
+
+/* ====== HERO MET REGENBOOG (versie die je gebruikt) ====== */
 .hero {
     position: relative;
-    height: 330px;
+    height: 300px;
     display: flex;
     justify-content: center;
-    align-items: flex-end;  /* titel helemaal naar onderen duwen */
+    align-items: center;
     overflow: hidden;
 }
 
@@ -26,12 +65,12 @@ body {
     object-fit: cover;
 }
 
-/* TITEL NU LAAGSTE PLEK, IN DE WITTE WOLKEN */
-.hero-overlay {
-    position: relative;
-    padding-bottom: 40px;         /* EXACTE PLAATSING in witte zone regenboog */
+.hero-text {
+    position: absolute;
+    left: 50%;
+    top: 65%;  /* tekst mooi in de witte boog – aanpassen indien nodig */
+    transform: translate(-50%, -50%);
     text-align: center;
-    background: none;
 }
 
 .hero-title {
@@ -47,93 +86,153 @@ body {
     color: #222;
 }
 
-/* BOEKEN */
+/* ====== SNELKEUZE-TEGELS / RASTER ====== */
+.shop-shortcuts {
+    padding: 20px 20px 10px;
+    background: #f5fbff;
+}
+
+.shop-shortcuts-grid {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.shortcut-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 14px 12px;
+    text-align: center;
+    text-decoration: none;
+    color: #123;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.shortcut-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+
+.shortcut-title {
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+/* ====== BOEKEN-SECTIE ====== */
+
 .books-section {
-    padding: 20px 10px;
+    padding: 30px 20px 40px;
 }
 
 .section-title {
     text-align: center;
-    font-size: 1.8rem;
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
 .books-grid {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 22px;
+    gap: 40px 50px;
+    justify-items: center;
 }
 
+/* kaarten – allemaal even groot */
 .book-card {
-    background: #f3f8ff;
-    border-radius: 12px;
-    padding: 18px 10px;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 24px 18px;
     border: 1px solid #d0d8e3;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
     text-align: center;
     cursor: pointer;
+
+    width: 100%;
+    max-width: 520px;
+    min-height: 480px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* COVER ZONDER WIT KADER */
+.book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.16);
+}
+
 .book-cover-wrapper {
-    width: 100%;
-    height: 240px;
+    height: 340px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0px;             /* geen wit kader */
-    background: none;         /* geen witte achtergrond */
-    border-radius: 0;         /* geen frame */
 }
 
-/* COVER VOLLEDIG ZICHTBAAR */
 .book-cover {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
 }
 
-/* TITEL */
 .book-title {
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin: 10px 0 8px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 14px 0 6px;
+    line-height: 1.35;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-/* BESCHRIJVING */
+/* beschrijvingen */
 .book-description {
     display: none;
-    font-size: 0.95rem;
-    line-height: 1.3;
-    padding: 6px 10px;
+    font-size: 0.98rem;
+    line-height: 1.4;
+    margin-top: 8px;
+    text-align: left;
+    max-width: 420px;
+}
+
+.book-description p {
+    margin: 6px 0;
 }
 
 .book-description ul {
-    text-align: left;
-    margin: 6px auto;
-    max-width: 250px;
+    margin: 6px 0 6px 20px;
 }
 
-/* CONTACT */
+/* ====== CONTACT ====== */
+
 .contact-section {
-    padding: 30px 10px;
+    padding: 40px 20px 60px;
     background: #f0f9ff;
 }
 
 .contact-card {
     max-width: 650px;
     margin: 0 auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 14px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background: #ffffff;
+    padding: 24px 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
 .form-row {
     display: flex;
-    gap: 12px;
+    gap: 14px;
     flex-wrap: wrap;
+    margin-bottom: 10px;
 }
 
 .form-field {
@@ -142,19 +241,92 @@ body {
     flex-direction: column;
 }
 
-input, textarea {
-    padding: 8px;
+.form-field label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+input,
+textarea {
+    padding: 8px 10px;
     border-radius: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid #c3d4e6;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+textarea {
+    resize: vertical;
 }
 
 .btn-submit {
-    margin-top: 12px;
+    margin-top: 10px;
     padding: 10px 22px;
     background: #5a67d8;
-    color: white;
+    color: #ffffff;
     border: none;
     border-radius: 999px;
     font-size: 1rem;
     cursor: pointer;
+    display: inline-block;
+}
+
+.btn-submit:hover {
+    background: #4652b6;
+}
+
+/* flash bericht */
+.flash-messages {
+    max-width: 650px;
+    margin: 0 auto 10px;
+}
+
+.alert {
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.alert-success {
+    background: #e6ffea;
+    border: 1px solid #9ae6b4;
+}
+
+/* ====== OVER ONS ====== */
+
+.over-ons-main {
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ====== RESPONSIVE ====== */
+
+@media (max-width: 900px) {
+    .books-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .shop-shortcuts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        height: 260px;
+    }
+
+    .hero-title {
+        font-size: 2.6rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .site-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
 }
