@@ -1,49 +1,41 @@
 import os
-import traceback
+import requests
 from flask import Flask, render_template, request, redirect, url_for, flash
-from flask_mail import Mail, Message
-
-
-def env_bool(name: str, default: bool = False) -> bool:
-    value = os.environ.get(name)
-    if value is None:
-        return default
-    return value.strip().lower() in ("1", "true", "yes", "y", "on")
-
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "geheim_voor_flash_berichten")
 
-# -------------------------------------------------
-# Mail config — Resend SMTP (via Environment vars)
-# -------------------------------------------------
-app.config["MAIL_SERVER"] = os.environ.get("MAIL_SERVER", "smtp.resend.com")
-app.config["MAIL_PORT"] = int(os.environ.get("MAIL_PORT", "465"))
-
-# Resend gebruikt SSL op 465
-app.config["MAIL_USE_SSL"] = env_bool("MAIL_USE_SSL", True)
-app.config["MAIL_USE_TLS"] = env_bool("MAIL_USE_TLS", False)
-
-# Timeout om worker timeouts te voorkomen
-app.config["MAIL_TIMEOUT"] = int(os.environ.get("MAIL_TIMEOUT", "10"))
-
-# Resend SMTP credentials
-# USER = "resend"
-# PASSWORD = Resend API key (re_...)
-app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME", "resend")
-app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD", "")
-
-# Afzender & ontvanger
+RESEND_API_KEY = os.environ.get("RESEND_API_KEY", "")
 MAIL_FROM = os.environ.get("MAIL_FROM", "contact@bijbelplezier.com")
 MAIL_TO = os.environ.get("MAIL_TO", "astar_kucun@hotmail.com")
 
-app.config["MAIL_DEFAULT_SENDER"] = MAIL_FROM
 
-mail = Mail(app)
+def send_email_via_resend(subject: str, text_body: str, reply_to: str | None = None):
+    if not RESEND_API_KEY:
+        raise RuntimeError("RESEND_API_KEY ontbreekt in Environment Variables.")
 
-# -------------------------------------------------
-# Routes
-# -------------------------------------------------
+    url = "https://api.resend.com/emails"
+    headers = {
+        "Authorization": f"Bearer {RESEND_API_KEY}",
+        "Content-Type": "application/json",
+    }
+
+    payload = {
+        "from": MAIL_FROM,
+        "to": [MAIL_TO],
+        "subject": subject,
+        "text": text_body,
+    }
+
+    if reply_to:
+        payload["reply_to"] = reply_to
+
+    r = requests.post(url, headers=headers, json=payload, timeout=15)
+    # Als Resend een fout geeft, wil je die zien:
+    if r.status_code >= 400:
+        raise RuntimeError(f"Resend error {r.status_code}: {r.text}")
+
+
 @app.route("/", methods=["GET", "POST"])
 def home():
     if request.method == "POST":
@@ -66,22 +58,12 @@ def home():
         )
 
         try:
-            msg = Message(
-                subject=subject,
-                recipients=[MAIL_TO],
-                reply_to=email,
-                body=body,
-                sender=MAIL_FROM
-            )
-            mail.send(msg)
+            send_email_via_resend(subject=subject, text_body=body, reply_to=email)
             flash("Je bericht is verzonden! Dank je wel.", "success")
-
-        except Exception:
-            print("MAIL ERROR TRACEBACK:\n", traceback.format_exc())
-            flash(
-                "Bericht kon niet verzonden worden. Probeer later opnieuw.",
-                "danger",
-            )
+        except Exception as e:
+            # Dit komt in Render logs:
+            print("EMAIL SEND ERROR:", str(e))
+            flash("Bericht kon niet verzonden worden. Probeer later opnieuw.", "danger")
 
         return redirect(url_for("home"))
 
@@ -93,8 +75,5 @@ def over_ons():
     return render_template("over_ons.html")
 
 
-# -------------------------------------------------
-# Local run
-# -------------------------------------------------
 if __name__ == "__main__":
     app.run(debug=True)
