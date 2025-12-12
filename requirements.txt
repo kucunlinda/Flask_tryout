@@ -1,3 +1,5 @@
 Flask
 gunicorn
 Flask-Mail
+flask
+requests

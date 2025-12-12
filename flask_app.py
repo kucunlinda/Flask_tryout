@@ -1,56 +1,50 @@
 import os
-import traceback
+import requests
 from flask import Flask, render_template, request, redirect, url_for, flash
-from flask_mail import Mail, Message
 
 app = Flask(__name__)
-app.secret_key = os.environ.get("SECRET_KEY", "geheim_voor_flash_berichten")
+app.secret_key = os.environ.get("SECRET_KEY", "geheim")
 
-# Gmail SMTP
-app.config["MAIL_SERVER"] = "smtp.gmail.com"
-app.config["MAIL_PORT"] = 587
-app.config["MAIL_USE_TLS"] = True
-app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
-app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
-app.config["MAIL_DEFAULT_SENDER"] = app.config["MAIL_USERNAME"]
-
-mail = Mail(app)
-
+RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
 
 @app.route("/", methods=["GET", "POST"])
 def home():
     if request.method == "POST":
-        first_name = request.form.get("first_name", "").strip()
-        last_name = request.form.get("last_name", "").strip()
-        email = request.form.get("email", "").strip()
-        phone = request.form.get("phone", "").strip()
-        message = request.form.get("message", "").strip()
+        first_name = request.form.get("first_name", "")
+        last_name = request.form.get("last_name", "")
+        email = request.form.get("email", "")
+        phone = request.form.get("phone", "")
+        message = request.form.get("message", "")
 
         if not (first_name and last_name and email and message):
             flash("Vul alle verplichte velden in.", "danger")
             return redirect(url_for("home"))
 
-        subject = f"Nieuw bericht via Bijbelplezier van {first_name} {last_name}"
-        body = (
-            f"Naam: {first_name} {last_name}\n"
-            f"E-mail: {email}\n"
-            f"Telefoon: {phone}\n\n"
-            f"Bericht:\n{message}\n"
+        email_data = {
+            "from": "Bijbelplezier <contact@bijbelplezier.com>",
+            "to": ["kucunlinda@gmail.com"],
+            "subject": f"Nieuw bericht van {first_name} {last_name}",
+            "html": f"""
+                <p><strong>Naam:</strong> {first_name} {last_name}</p>
+                <p><strong>E-mail:</strong> {email}</p>
+                <p><strong>Telefoon:</strong> {phone}</p>
+                <p><strong>Bericht:</strong><br>{message}</p>
+            """
+        }
+
+        response = requests.post(
+            "https://api.resend.com/emails",
+            headers={
+                "Authorization": f"Bearer {RESEND_API_KEY}",
+                "Content-Type": "application/json",
+            },
+            json=email_data,
         )
 
-        try:
-            msg = Message(
-                subject=subject,
-                recipients=[app.config["MAIL_USERNAME"]],
-                reply_to=email,
-                body=body,
-            )
-            mail.send(msg)
+        if response.status_code == 200:
             flash("Je bericht is verzonden! Dank je wel.", "success")
-
-        except Exception:
-            print(traceback.format_exc())
-            flash("Bericht kon niet verzonden worden.", "danger")
+        else:
+            flash("Verzenden mislukt. Probeer later opnieuw.", "danger")
 
         return redirect(url_for("home"))
 
