@@ -1,3 +1,4 @@
+import traceback
 import os
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mail import Mail, Message
@@ -36,19 +37,19 @@ def home():
             f"Bericht:\n{message}\n"
         )
 
-        try:
-            msg = Message(
-                subject=subject,
-                recipients=[app.config["MAIL_USERNAME"]],  # send to yourself
-                reply_to=email
-            )
-            msg.body = body
-            mail.send(msg)
-            flash("Je bericht is verzonden! Dank je wel.", "success")
-        except Exception as e:
-            # show a friendly message; check Render logs for the real error
-            flash("Er ging iets mis bij het verzenden. Probeer later opnieuw.", "danger")
-            print("MAIL ERROR:", e)
+   try:
+    msg = Message(
+        subject=subject,
+        recipients=[app.config["MAIL_USERNAME"]],
+        reply_to=email,
+        body=body
+    )
+    mail.send(msg)
+    flash("Je bericht is verzonden! Dank je wel.", "success")
+
+except Exception:
+    print("MAIL ERROR TRACEBACK:\n", traceback.format_exc())
+    flash("Bericht kon niet verzonden worden. Probeer later opnieuw.", "danger")
 
         return redirect(url_for("home"))
 
