@@ -1,5 +1,5 @@
-import traceback
 import os
+import traceback
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mail import Mail, Message
 
@@ -16,14 +16,15 @@ app.config["MAIL_DEFAULT_SENDER"] = app.config["MAIL_USERNAME"]
 
 mail = Mail(app)
 
+
 @app.route("/", methods=["GET", "POST"])
 def home():
     if request.method == "POST":
         first_name = request.form.get("first_name", "").strip()
-        last_name  = request.form.get("last_name", "").strip()
-        email      = request.form.get("email", "").strip()
-        phone      = request.form.get("phone", "").strip()
-        message    = request.form.get("message", "").strip()
+        last_name = request.form.get("last_name", "").strip()
+        email = request.form.get("email", "").strip()
+        phone = request.form.get("phone", "").strip()
+        message = request.form.get("message", "").strip()
 
         if not (first_name and last_name and email and message):
             flash("Vul alle verplichte velden in.", "danger")
@@ -37,19 +38,19 @@ def home():
             f"Bericht:\n{message}\n"
         )
 
-   try:
-    msg = Message(
-        subject=subject,
-        recipients=[app.config["MAIL_USERNAME"]],
-        reply_to=email,
-        body=body
-    )
-    mail.send(msg)
-    flash("Je bericht is verzonden! Dank je wel.", "success")
+        try:
+            msg = Message(
+                subject=subject,
+                recipients=[app.config["MAIL_USERNAME"]],
+                reply_to=email,
+                body=body,
+            )
+            mail.send(msg)
+            flash("Je bericht is verzonden! Dank je wel.", "success")
 
-except Exception:
-    print("MAIL ERROR TRACEBACK:\n", traceback.format_exc())
-    flash("Bericht kon niet verzonden worden. Probeer later opnieuw.", "danger")
+        except Exception:
+            print("MAIL ERROR TRACEBACK:\n", traceback.format_exc())
+            flash("Bericht kon niet verzonden worden. Probeer later opnieuw.", "danger")
 
         return redirect(url_for("home"))
 
