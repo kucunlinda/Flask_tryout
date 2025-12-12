@@ -6,12 +6,12 @@ from flask_mail import Mail, Message
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "geheim_voor_flash_berichten")
 
-# Gmail SMTP config (values come from Render Environment variables)
+# Gmail SMTP
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
 app.config["MAIL_PORT"] = 587
 app.config["MAIL_USE_TLS"] = True
-app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")  # your gmail
-app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")  # your gmail app password
+app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
+app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
 app.config["MAIL_DEFAULT_SENDER"] = app.config["MAIL_USERNAME"]
 
 mail = Mail(app)
@@ -49,8 +49,8 @@ def home():
             flash("Je bericht is verzonden! Dank je wel.", "success")
 
         except Exception:
-            print("MAIL ERROR TRACEBACK:\n", traceback.format_exc())
-            flash("Bericht kon niet verzonden worden. Probeer later opnieuw.", "danger")
+            print(traceback.format_exc())
+            flash("Bericht kon niet verzonden worden.", "danger")
 
         return redirect(url_for("home"))
 
