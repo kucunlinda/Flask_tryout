@@ -7,22 +7,41 @@
 </head>
 <body>
 
-<div class="page">
+<header class="site-header">
+    <div class="shop-logo">
+        Bijbelplezier
+    </div>
+    <nav class="main-nav">
+        <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+        <a href="{{ url_for('home') }}#boeken" class="nav-link">Boeken</a>
+        <a href="{{ url_for('over_ons') }}" class="nav-link nav-link-active">Over ons</a>
+        <a href="{{ url_for('home') }}#contact" class="nav-link">Contact</a>
+    </nav>
+</header>
 
-    <header class="site-header">
-        <div class="shop-logo">
-            Bijbelplezier
+<!-- ===== HERO MET REGENBOOG + BIJBELVERS ===== -->
+<section class="hero">
+    <img
+        src="{{ url_for('static', filename='img/regenboog.png') }}"
+        alt="Regenboog"
+        class="hero-full-rainbow"
+    >
+
+    <div class="hero-text over-ons-hero-text">
+        <p class="bijbelvers">
+            “Toen zei Jezus: ‘Laat die kinderen bij me komen. Houd ze niet tegen,
+            want Gods nieuwe wereld is er juist voor hen.’”
+        </p>
+        <div class="bijbelvers-bron">
+            Matteüs 19
         </div>
-        <nav class="main-nav">
-            <a href="{{ url_for('home') }}" class="nav-link">Home</a>
-            <a href="{{ url_for('home') }}#boeken" class="nav-link">Boeken</a>
-            <a href="{{ url_for('over_ons') }}" class="nav-link nav-link-active">Over ons</a>
-            <a href="{{ url_for('home') }}#contact" class="nav-link">Contact</a>
-        </nav>
-    </header>
+    </div>
+</section>
 
-    <main class="over-ons-main">
-        <h1>Over ons</h1>
+<!-- ===== INHOUD OVER ONS ===== -->
+<main class="over-ons-main">
+
+    <h1>Over ons</h1>
 
     <p>
         Welkom bij <strong>Bijbelplezier</strong>, een plek waar kinderen op een speelse en
@@ -38,25 +57,26 @@
     <h2>Onze producten zijn gemaakt om:</h2>
     <ul>
         <li>Bijbelverhalen tot leven te brengen op een manier die past bij kinderen.</li>
-        <li>Het leven en de lessen van Jezus op een eenvoudige, inspirerende manier te laten zien.</li>
+        <li>Het leven en de lessen van Jezus eenvoudig en inspirerend te laten zien.</li>
         <li>Creativiteit te stimuleren via kleurplaten, activiteiten en visueel materiaal.</li>
         <li>Gesprekken over geloof te openen binnen gezinnen, kerken en scholen.</li>
         <li>Leren en geloven op een natuurlijke manier te verbinden.</li>
     </ul>
 
     <p>
-        Of het nu gaat om het ontdekken van de schepping, het volgen van Jezus’ stappen
-        of het begrijpen van de vele gelijkenissen die Hij vertelde, wij willen kinderen
-        helpen om de Bijbel écht te begrijpen en ervan te genieten.
-    </p>
-
-    <p>
         Dank je wel dat je hier bent en deel uitmaakt van onze missie om de Bijbel
         dicht bij kinderen te brengen.
     </p>
-    </main>
 
-</div>
+    <!-- ===== JEZUS AFBEELDING ONDERAAN ===== -->
+    <div class="over-ons-jesus">
+        <img
+            src="{{ url_for('static', filename='img/jesus.jpg') }}"
+            alt="Jezus met kinderen"
+        >
+    </div>
+
+</main>
 
 </body>
 </html>
