@@ -1,262 +1,258 @@
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <title>Bijbelplezier</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8" />
+  <title>Bijbelplezier</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-
 <div class="page">
 
-    <!-- TOP NAVIGATIE - boekshop gevoel -->
-    <header class="site-header">
-        <div class="shop-logo">
-            Bijbelplezier
-        </div>
-        <nav class="main-nav">
-            <a href="{{ url_for('home') }}" class="nav-link">Home</a>
-            <a href="#boeken" class="nav-link">Boeken</a>
-            <a href="{{ url_for('over_ons') }}" class="nav-link">Over ons</a>
-            <a href="#contact" class="nav-link">Contact</a>
-        </nav>
-    </header>
+  <!-- TOP NAVIGATIE -->
+  <header class="site-header">
+    <div class="shop-logo">Bijbelplezier</div>
+    <nav class="main-nav">
+      <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+      <a href="#boeken" class="nav-link">Boeken</a>
+      <a href="{{ url_for('over_ons') }}" class="nav-link">Over ons</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+  </header>
 
-    <!-- HERO MET REGENBOOG (versie die je teruggezet hebt) -->
-    <header class="hero">
-        <img class="hero-full-rainbow"
-             src="{{ url_for('static', filename='img/regenboog.png') }}"
-             alt="Regenboog">
+  <!-- HERO MET REGENBOOG -->
+  <header class="hero">
+    <img class="hero-full-rainbow"
+         src="{{ url_for('static', filename='img/regenboog.png') }}"
+         alt="Regenboog">
+    <div class="hero-text">
+      <h1 class="hero-title">Bijbelplezier</h1>
+      <h2 class="hero-subtitle">Spelen en leren met de Bijbel</h2>
+    </div>
+  </header>
 
-        <div class="hero-text">
-            <h1 class="hero-title">Bijbelplezier</h1>
-            <h2 class="hero-subtitle">Spelen en leren met de Bijbel</h2>
-        </div>
-    </header>
+  <!-- SNELKEUZE-TEGELS / RASTER -->
+  <section class="shop-shortcuts">
+    <div class="shop-shortcuts-grid">
+      <a href="#boeken" class="shortcut-card">
+        <div class="shortcut-title">Alle boeken</div>
+        <p>Bekijk onze kindvriendelijke bijbelboeken.</p>
+      </a>
+      <a href="{{ url_for('over_ons') }}" class="shortcut-card">
+        <div class="shortcut-title">Over ons</div>
+        <p>Lees wie wij zijn en wat we doen.</p>
+      </a>
+      <a href="#contact" class="shortcut-card">
+        <div class="shortcut-title">Contact</div>
+        <p>Stel je vraag of plaats een bestelling.</p>
+      </a>
+    </div>
+  </section>
 
-    <!-- SNELKEUZE-TEGELS / RASTER -->
-    <section class="shop-shortcuts">
-        <div class="shop-shortcuts-grid">
-            <a href="#boeken" class="shortcut-card">
-                <div class="shortcut-title">Alle boeken</div>
-                <p>Bekijk onze kindvriendelijke bijbelboeken.</p>
-            </a>
-            <a href="{{ url_for('over_ons') }}" class="shortcut-card">
-                <div class="shortcut-title">Over ons</div>
-                <p>Lees wie wij zijn en wat we doen.</p>
-            </a>
-            <a href="#contact" class="shortcut-card">
-                <div class="shortcut-title">Contact</div>
-                <p>Stel je vraag of plaats een bestelling.</p>
-            </a>
-        </div>
+  <main>
+
+    <!-- BOEKEN -->
+    <section id="boeken" class="books-section">
+      <h3 class="section-title">Ontdek onze boeken</h3>
+
+      <div class="books-grid">
+
+        <!-- BOEK 1 -->
+        <article class="book-card" data-target="book1">
+          <div class="book-cover-wrapper">
+            <img class="book-cover"
+                 src="{{ url_for('static', filename='img/books/1.png') }}"
+                 alt="Boek 1">
+          </div>
+          <h4 class="book-title">Boek 1 – Spelen en leren met de Bijbel (5–6 jaar)</h4>
+
+          <div id="book1" class="book-description">
+            <p>In dit bijzondere oefenboekje staat de Bijbel centraal. Samen ontdekt je kind
+              de verhalen over Gods liefde, Jezus en de mensen in de Bijbel.</p>
+
+            <p>Met elke opdracht groeit het kind in geloof én in vaardigheden zoals:</p>
+            <ul>
+              <li>Schrijven en letters oefenen</li>
+              <li>Rekenen met Bijbelvoorbeelden</li>
+              <li>Teken- en denkopdrachten over Bijbelse thema’s</li>
+              <li>Samen praten over God en Zijn beloften</li>
+            </ul>
+
+            <p>Dit boekje is speciaal gemaakt om jonge kinderen op een speelse manier vertrouwd te maken
+              met de Bijbel, terwijl ze tegelijk belangrijke leerstappen zetten.</p>
+
+            <p>Een waardevolle reis door Gods Woord, voor kleine harten met een groot geloof.</p>
+          </div>
+        </article>
+
+        <!-- BOEK 2 -->
+        <article class="book-card" data-target="book2">
+          <div class="book-cover-wrapper">
+            <img class="book-cover"
+                 src="{{ url_for('static', filename='img/books/2.png') }}"
+                 alt="Boek 2">
+          </div>
+          <h4 class="book-title">Boek 2 – Spelen en leren met de Bijbel (7–8 jaar)</h4>
+
+          <div id="book2" class="book-description">
+            <p>In dit bijzondere oefenboekje staat de Bijbel centraal. Samen ontdekt je kind
+              de verhalen over Gods liefde, Jezus en de mensen in de Bijbel.</p>
+
+            <p>Met elke opdracht groeit het kind in geloof én in vaardigheden zoals:</p>
+            <ul>
+              <li>Optellen en aftrekken tot 100</li>
+              <li>Hoofdletters schrijven</li>
+              <li>Vermenigvuldigen en delen</li>
+              <li>Woorden en zinnen correct schrijven</li>
+            </ul>
+
+            <p>Dit boekje is speciaal gemaakt om kinderen op een speelse manier vertrouwd te maken
+              met de Bijbel, terwijl ze tegelijk belangrijke leerstappen zetten.</p>
+
+            <p>Een waardevolle reis door Gods Woord, voor kleine harten met een groot geloof.</p>
+          </div>
+        </article>
+
+        <!-- BOEK 3 -->
+        <article class="book-card" data-target="book3">
+          <div class="book-cover-wrapper">
+            <img class="book-cover"
+                 src="{{ url_for('static', filename='img/books/3.png') }}"
+                 alt="Boek 3">
+          </div>
+          <h4 class="book-title">Boek 3 – Kleur het leven van Jezus</h4>
+
+          <div id="book3" class="book-description">
+            <p>Reis mee door de mooiste verhalen uit de Bijbel — van Jezus’ geboorte tot zijn hemelvaart!</p>
+
+            <p>In dit kleurboek ontdek je stap voor stap het bijzondere leven van Jezus:
+              hoe Hij mensen hielp, wonderen deed, vrienden maakte en Gods liefde liet zien aan iedereen.</p>
+
+            <p>Elke bladzijde vertelt een bekend Bijbelverhaal, eenvoudig getekend in een vrolijke,
+              duidelijke stijl. Zo kunnen kinderen al kleurend leren over geloof, hoop en liefde —
+              en de verhalen écht tot leven brengen!</p>
+
+            <p>Kleur, ontdek en laat het licht van Jezus schijnen op elke bladzijde!</p>
+          </div>
+        </article>
+
+        <!-- BOEK 4 -->
+        <article class="book-card" data-target="book4">
+          <div class="book-cover-wrapper">
+            <img class="book-cover"
+                 src="{{ url_for('static', filename='img/books/4.png') }}"
+                 alt="Boek 4">
+          </div>
+          <h4 class="book-title">Boek 4 – Bijbels ABC-kleurboek</h4>
+
+          <div id="book4" class="book-description">
+            <p>Leer, schrijf en kleur met God! In dit Bijbelse ABC-kleurboek ontdek je bij elke letter
+              een mooi woord uit de Bijbel.</p>
+
+            <p>Van A tot Z leer je nieuwe woorden, oefen je met schrijven en geef je elke pagina kleur.</p>
+
+            <p>Elke letter vertelt iets over Gods liefde, mensen uit de Bijbel en wat het betekent om met
+              Hem te leven.</p>
+
+            <p>Zo wordt leren lezen en schrijven extra leuk én vol betekenis!</p>
+          </div>
+        </article>
+
+        <!-- BOEK 5 – gecentreerd over beide kolommen -->
+        <article class="book-card" data-target="book5" style="grid-column: 1 / -1;">
+          <div class="book-cover-wrapper">
+            <img class="book-cover"
+                 src="{{ url_for('static', filename='img/books/kleurboek.png') }}"
+                 alt="Boek 5 – Kleurboek Oude Testament">
+          </div>
+          <h4 class="book-title">Boek 5 – Kleurboek Oude Testament</h4>
+
+          <div id="book5" class="book-description">
+            <p><strong>Ga mee op een kleurrijke reis door het Oude Testament!</strong></p>
+
+            <p>In dit prachtige kleurboek ontdekken kinderen de bekendste Bijbelverhalen,
+              van de schepping van de wereld tot de moed van David.</p>
+
+            <p>Met duidelijke illustraties en eenvoudige uitleg komen de verhalen uit de Bijbel tot leven.
+              Terwijl kinderen kleuren, leren ze spelenderwijs over vertrouwen, gehoorzaamheid,
+              moed en Gods liefde voor mensen.</p>
+
+            <p>Een leuke en leerzame manier om creatief bezig te zijn én vertrouwd te raken met de verhalen
+              uit het Oude Testament. Pak je kleurpotloden en laat de Bijbelverhalen stralen!</p>
+          </div>
+        </article>
+
+      </div>
     </section>
 
-    <main>
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+      <h3 class="section-title">Neem contact op</h3>
 
-        <!-- BOEKEN -->
-        <section id="boeken" class="books-section">
-            <h3 class="section-title">Ontdek onze boeken</h3>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flash-messages">
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
 
-            <div class="books-grid">
-
-                <!-- BOEK 1 -->
-                <article class="book-card" onclick="toggleDescription('book1')">
-                    <div class="book-cover-wrapper">
-                        <img class="book-cover"
-                             src="{{ url_for('static', filename='img/books/1.png') }}"
-                             alt="Boek 1">
-                    </div>
-
-                    <h4 class="book-title">Boek 1 – Spelen en leren met de Bijbel (5–6 jaar)</h4>
-
-                    <div id="book1" class="book-description">
-                        <p>
-                            In dit bijzondere oefenboekje staat de Bijbel centraal. Samen ontdekt je kind
-                            de verhalen over Gods liefde, Jezus en de mensen in de Bijbel.
-                        </p>
-
-                        <p>Met elke opdracht groeit het kind in geloof én in vaardigheden zoals:</p>
-
-                        <ul>
-                            <li>Schrijven en letters oefenen</li>
-                            <li>Rekenen met Bijbelvoorbeelden</li>
-                            <li>Teken- en denkopdrachten over Bijbelse thema’s</li>
-                            <li>Samen praten over God en Zijn beloften</li>
-                        </ul>
-
-                        <p>
-                            Dit boekje is speciaal gemaakt om jonge kinderen op een speelse manier vertrouwd te maken
-                            met de Bijbel, terwijl ze tegelijk belangrijke leerstappen zetten.
-                        </p>
-
-                        <p>
-                            Een waardevolle reis door Gods Woord, voor kleine harten met een groot geloof.
-                        </p>
-                    </div>
-                </article>
-
-                <!-- BOEK 2 -->
-                <article class="book-card" onclick="toggleDescription('book2')">
-                    <div class="book-cover-wrapper">
-                        <img class="book-cover"
-                             src="{{ url_for('static', filename='img/books/2.png') }}"
-                             alt="Boek 2">
-                    </div>
-
-                    <h4 class="book-title">Boek 2 – Spelen en leren met de Bijbel (7–8 jaar)</h4>
-
-                    <div id="book2" class="book-description">
-                        <p>
-                            In dit bijzondere oefenboekje staat de Bijbel centraal. Samen ontdekt je kind
-                            de verhalen over Gods liefde, Jezus en de mensen in de Bijbel.
-                        </p>
-
-                        <p>Met elke opdracht groeit het kind in geloof én in vaardigheden zoals:</p>
-
-                        <ul>
-                            <li>Optellen en aftrekken tot 100</li>
-                            <li>Hoofdletters schrijven</li>
-                            <li>Vermenigvuldigen en delen</li>
-                            <li>Woorden en zinnen correct schrijven</li>
-                        </ul>
-
-                        <p>
-                            Dit boekje is speciaal gemaakt om kinderen op een speelse manier vertrouwd te maken
-                            met de Bijbel, terwijl ze tegelijk belangrijke leerstappen zetten.
-                        </p>
-
-                        <p>
-                            Een waardevolle reis door Gods Woord, voor kleine harten met een groot geloof.
-                        </p>
-                    </div>
-                </article>
-
-                <!-- BOEK 3 -->
-                <article class="book-card" onclick="toggleDescription('book3')">
-                    <div class="book-cover-wrapper">
-                        <img class="book-cover"
-                             src="{{ url_for('static', filename='img/books/3.png') }}"
-                             alt="Boek 3">
-                    </div>
-
-                    <h4 class="book-title">Boek 3 – Kleur het leven van Jezus</h4>
-
-                    <div id="book3" class="book-description">
-                        <p>
-                            Reis mee door de mooiste verhalen uit de Bijbel — van Jezus’ geboorte tot zijn hemelvaart!
-                        </p>
-
-                        <p>
-                            In dit kleurboek ontdek je stap voor stap het bijzondere leven van Jezus:
-                            hoe Hij mensen hielp, wonderen deed, vrienden maakte en Gods liefde liet zien aan iedereen.
-                        </p>
-
-                        <p>
-                            Elke bladzijde vertelt een bekend Bijbelverhaal, eenvoudig getekend in een vrolijke,
-                            duidelijke stijl. Zo kunnen kinderen al kleurend leren over geloof, hoop en liefde —
-                            en de verhalen écht tot leven brengen!
-                        </p>
-
-                        <p>
-                            Kleur, ontdek en laat het licht van Jezus schijnen op elke bladzijde!
-                        </p>
-                    </div>
-                </article>
-
-                <!-- BOEK 4 -->
-                <article class="book-card" onclick="toggleDescription('book4')">
-                    <div class="book-cover-wrapper">
-                        <img class="book-cover"
-                             src="{{ url_for('static', filename='img/books/4.png') }}"
-                             alt="Boek 4">
-                    </div>
-
-                    <h4 class="book-title">Boek 4 – Bijbels ABC-kleurboek</h4>
-
-                    <div id="book4" class="book-description">
-                        <p>
-                            Leer, schrijf en kleur met God! In dit Bijbelse ABC-kleurboek ontdek je bij elke letter
-                            een mooi woord uit de Bijbel.
-                        </p>
-
-                        <p>
-                            Van A tot Z leer je nieuwe woorden, oefen je met schrijven en geef je elke pagina kleur.
-                        </p>
-
-                        <p>
-                            Elke letter vertelt iets over Gods liefde, mensen uit de Bijbel en wat het betekent om met
-                            Hem te leven.
-                        </p>
-
-                        <p>
-                            Zo wordt leren lezen en schrijven extra leuk én vol betekenis!
-                        </p>
-                    </div>
-                </article>
-
+      <div class="contact-card">
+        <form class="contact-form" method="post" action="{{ url_for('home') }}">
+          <div class="form-row">
+            <div class="form-field">
+              <label>Voornaam</label>
+              <input type="text" name="first_name" required>
             </div>
-        </section>
-
-        <!-- CONTACT -->
-        <section id="contact" class="contact-section">
-            <h3 class="section-title">Neem contact op</h3>
-
-            {% with messages = get_flashed_messages(with_categories=true) %}
-              {% if messages %}
-                <div class="flash-messages">
-                  {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}">{{ message }}</div>
-                  {% endfor %}
-                </div>
-              {% endif %}
-            {% endwith %}
-
-            <div class="contact-card">
-                <form class="contact-form" method="post" action="{{ url_for('home') }}">
-                    <div class="form-row">
-                        <div class="form-field">
-                            <label>Voornaam</label>
-                            <input type="text" name="first_name" required>
-                        </div>
-                        <div class="form-field">
-                            <label>Achternaam</label>
-                            <input type="text" name="last_name" required>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-field">
-                            <label>E-mail</label>
-                            <input type="email" name="email" required>
-                        </div>
-                        <div class="form-field">
-                            <label>Telefoonnummer</label>
-                            <input type="tel" name="phone">
-                        </div>
-                    </div>
-
-                    <div class="form-field">
-                        <label>Bericht</label>
-                        <textarea name="message" rows="4" required></textarea>
-                    </div>
-
-                    <button class="btn-submit" type="submit">Verzenden</button>
-                </form>
+            <div class="form-field">
+              <label>Achternaam</label>
+              <input type="text" name="last_name" required>
             </div>
-        </section>
+          </div>
 
-    </main>
+          <div class="form-row">
+            <div class="form-field">
+              <label>E-mail</label>
+              <input type="email" name="email" required>
+            </div>
+            <div class="form-field">
+              <label>Telefoonnummer</label>
+              <input type="tel" name="phone">
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label>Bericht</label>
+            <textarea name="message" rows="4" required></textarea>
+          </div>
+
+          <button class="btn-submit" type="submit">Verzenden</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
 </div>
 
 <script>
-    function toggleDescription(id) {
-        const t = document.getElementById(id);
-        document.querySelectorAll('.book-description').forEach(d => {
-            if (d !== t) d.style.display = 'none';
-        });
-        t.style.display = t.style.display === 'block' ? 'none' : 'block';
-    }
+  // Klik op hele kaart: open alleen die beschrijving, andere dicht.
+  document.querySelectorAll('.book-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const targetId = card.dataset.target;
+      const targetEl = document.getElementById(targetId);
+      if (!targetEl) return;
+
+      // Verberg andere beschrijvingen
+      document.querySelectorAll('.book-description').forEach(d => {
+        if (d !== targetEl) d.style.display = 'none';
+      });
+
+      // Toggle huidige
+      targetEl.style.display = (targetEl.style.display === 'block') ? 'none' : 'block';
+    });
+  });
 </script>
 
 </body>

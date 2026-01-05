@@ -1,3 +1,4 @@
+
 import os
 import requests
 from flask import Flask, render_template, request, redirect, url_for, flash
@@ -31,7 +32,6 @@ def send_email_via_resend(subject: str, text_body: str, reply_to: str | None = N
         payload["reply_to"] = reply_to
 
     r = requests.post(url, headers=headers, json=payload, timeout=15)
-    # Als Resend een fout geeft, wil je die zien:
     if r.status_code >= 400:
         raise RuntimeError(f"Resend error {r.status_code}: {r.text}")
 
@@ -61,7 +61,6 @@ def home():
             send_email_via_resend(subject=subject, text_body=body, reply_to=email)
             flash("Je bericht is verzonden! Dank je wel.", "success")
         except Exception as e:
-            # Dit komt in Render logs:
             print("EMAIL SEND ERROR:", str(e))
             flash("Bericht kon niet verzonden worden. Probeer later opnieuw.", "danger")
 

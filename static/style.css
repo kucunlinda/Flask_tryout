@@ -1,3 +1,4 @@
+
 /* BASIS */
 * {
     box-sizing: border-box;
@@ -47,7 +48,7 @@ body {
     background: #e0f2ff;
 }
 
-/* ====== HERO MET REGENBOOG (versie die je gebruikt) ====== */
+/* ====== HERO MET REGENBOOG ====== */
 .hero {
     position: relative;
     height: 300px;
@@ -68,7 +69,7 @@ body {
 .hero-text {
     position: absolute;
     left: 50%;
-    top: 65%;  /* tekst mooi in de witte boog – aanpassen indien nodig */
+    top: 65%;
     transform: translate(-50%, -50%);
     text-align: center;
 }
@@ -194,7 +195,7 @@ body {
     text-align: center;
 }
 
-/* beschrijvingen */
+/* beschrijvingen (standaard verborgen) */
 .book-description {
     display: none;
     font-size: 0.98rem;
@@ -292,8 +293,6 @@ textarea {
     background: #e6ffea;
     border: 1px solid #9ae6b4;
 }
-
-/* ====== OVER ONS ====== */
 
 /* ====== OVER ONS – EXTRA ====== */
 
