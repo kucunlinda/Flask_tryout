@@ -1,8 +1,6 @@
 
-/* BASIS */
-* {
-    box-sizing: border-box;
-}
+/* ===== BASIS ===== */
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
@@ -12,7 +10,7 @@ body {
     color: #222;
 }
 
-/* ====== TOP NAVIGATIE ====== */
+/* ===== TOP NAVIGATIE ===== */
 .site-header {
     position: sticky;
     top: 0;
@@ -25,15 +23,9 @@ body {
     justify-content: space-between;
 }
 
-.shop-logo {
-    font-weight: 800;
-    font-size: 1.4rem;
-}
+.shop-logo { font-weight: 800; font-size: 1.4rem; }
 
-.main-nav {
-    display: flex;
-    gap: 16px;
-}
+.main-nav { display: flex; gap: 16px; }
 
 .nav-link {
     text-decoration: none;
@@ -44,14 +36,12 @@ body {
 }
 
 .nav-link:hover,
-.nav-link-active {
-    background: #e0f2ff;
-}
+.nav-link-active { background: #e0f2ff; }
 
-/* ====== HERO MET REGENBOOG ====== */
+/* ===== HERO MET REGENBOOG ===== */
 .hero {
     position: relative;
-    height: 300px;
+    height: 300px;              /* behoud huidige hoogte */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,24 +64,97 @@ body {
     text-align: center;
 }
 
-.hero-title {
+.bijbelvers {
+    font-size: 1.4rem;          /* iets kleiner, rustig */
+    font-weight: 700;           /* vet */
+    color: #000000;             /* zwart */
+    line-height: 1.4;
     margin: 0;
-    font-size: 3.4rem;
-    color: black;
-    font-weight: 800;
 }
 
-.hero-subtitle {
-    margin: 6px 0 0;
-    font-size: 1.5rem;
-    color: #222;
+.bijbelvers-bron {
+    margin-top: 6px;
+    font-size: 0.95rem;         /* kleiner dan quote */
+    font-weight: 400;           /* normaal gewicht */
+    color: #000000;             /* zwart */
+    font-style: normal;         /* geen cursief */
 }
 
-/* ====== SNELKEUZE-TEGELS / RASTER ====== */
-.shop-shortcuts {
-    padding: 20px 20px 10px;
-    background: #f5fbff;
+/* ===== OVER ONS – BLAUWE BAND & WITTE BOX ===== */
+.over-ons-band {
+    background: #dff0ff;        /* zachte blauwe achtergrond */
+    padding: 24px 0 40px;       /* hoogte van de band + ruimte onderaan */
 }
+
+.over-ons-main {
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: 0 auto;             /* gecentreerd in de band */
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    position: relative;
+    z-index: 1;                  /* boven de band blijven */
+}
+
+/* Donkerblauwe titels (binnen de witte box) */
+.over-ons-main h1 {
+    text-align: center;
+    font-size: 2.4rem;
+    color: #064273;             /* donkerblauw */
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.over-ons-main h2 {
+    margin-top: 30px;
+    font-size: 1.6rem;
+    color: #064273;             /* donkerblauw */
+    font-weight: 700;
+}
+
+/* Tekst & lijst */
+.over-ons-main p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.over-ons-main ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;           /* leesbaar */
+    display: inline-block;      /* smalle kolom in gecentreerde container */
+    max-width: 650px;
+}
+
+.over-ons-main ul li {
+    background: #e0f2ff;
+    margin-bottom: 10px;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.over-ons-main ul li::before {
+    content: "✔";
+    color: #0a6ebd;
+    margin-right: 10px;
+}
+
+/* Afbeelding onderaan */
+.over-ons-jesus { margin-top: 40px; text-align: center; }
+
+.over-ons-jesus img {
+    max-width: 100%;
+    width: 420px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* ===== SNELKEUZE-TEGELS ===== */
+.shop-shortcuts { padding: 20px 20px 10px; background: #f5fbff; }
 
 .shop-shortcuts-grid {
     max-width: 900px;
@@ -117,22 +180,12 @@ body {
     box-shadow: 0 4px 14px rgba(0,0,0,0.15);
 }
 
-.shortcut-title {
-    font-weight: 700;
-    margin-bottom: 4px;
-}
+.shortcut-title { font-weight: 700; margin-bottom: 4px; }
 
-/* ====== BOEKEN-SECTIE ====== */
+/* ===== BOEKEN-SECTIE ===== */
+.books-section { padding: 30px 20px 40px; }
 
-.books-section {
-    padding: 30px 20px 40px;
-}
-
-.section-title {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
+.section-title { text-align: center; font-size: 2rem; margin-bottom: 20px; }
 
 .books-grid {
     max-width: 1100px;
@@ -143,7 +196,6 @@ body {
     justify-items: center;
 }
 
-/* kaarten – allemaal even groot */
 .book-card {
     background: #ffffff;
     border-radius: 18px;
@@ -152,16 +204,13 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.12);
     text-align: center;
     cursor: pointer;
-
     width: 100%;
     max-width: 520px;
     min-height: 480px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -177,11 +226,7 @@ body {
     align-items: center;
 }
 
-.book-cover {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
+.book-cover { max-width: 100%; max-height: 100%; object-fit: contain; }
 
 .book-title {
     font-size: 1.3rem;
@@ -195,7 +240,6 @@ body {
     text-align: center;
 }
 
-/* beschrijvingen (standaard verborgen) */
 .book-description {
     display: none;
     font-size: 0.98rem;
@@ -205,20 +249,11 @@ body {
     max-width: 420px;
 }
 
-.book-description p {
-    margin: 6px 0;
-}
+.book-description p { margin: 6px 0; }
+.book-description ul { margin: 6px 0 6px 20px; }
 
-.book-description ul {
-    margin: 6px 0 6px 20px;
-}
-
-/* ====== CONTACT ====== */
-
-.contact-section {
-    padding: 40px 20px 60px;
-    background: #f0f9ff;
-}
+/* ===== CONTACT ===== */
+.contact-section { padding: 40px 20px 60px; background: #f0f9ff; }
 
 .contact-card {
     max-width: 650px;
@@ -229,27 +264,13 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
-.form-row {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
-}
+.form-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 10px; }
 
-.form-field {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
+.form-field { flex: 1; display: flex; flex-direction: column; }
 
-.form-field label {
-    font-size: 0.95rem;
-    font-weight: 600;
-    margin-bottom: 4px;
-}
+.form-field label { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
 
-input,
-textarea {
+input, textarea {
     padding: 8px 10px;
     border-radius: 8px;
     border: 1px solid #c3d4e6;
@@ -257,14 +278,12 @@ textarea {
     font-size: 0.95rem;
 }
 
-textarea {
-    resize: vertical;
-}
+textarea { resize: vertical; }
 
 .btn-submit {
     margin-top: 10px;
     padding: 10px 22px;
-    background: #5a67d8;
+    background: #064273;
     color: #ffffff;
     border: none;
     border-radius: 999px;
@@ -273,91 +292,49 @@ textarea {
     display: inline-block;
 }
 
-.btn-submit:hover {
-    background: #4652b6;
-}
+.btn-submit:hover { background: #0a6ebd; }
 
-/* flash bericht */
-.flash-messages {
-    max-width: 650px;
-    margin: 0 auto 10px;
-}
+.flash-messages { max-width: 650px; margin: 0 auto 10px; }
 
-.alert {
-    padding: 8px 10px;
-    border-radius: 6px;
-    font-size: 0.9rem;
-}
+.alert { padding: 8px 10px; border-radius: 6px; font-size: 0.9rem; }
 
-.alert-success {
-    background: #e6ffea;
-    border: 1px solid #9ae6b4;
-}
+.alert-success { background: #e6ffea; border: 1px solid #9ae6b4; }
 
-/* ====== OVER ONS – EXTRA ====== */
-
-.over-ons-hero-text {
-    max-width: 800px;
-    padding: 0 20px;
-}
-
-.bijbelvers {
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: #222;
-    line-height: 1.4;
-}
-
-.bijbelvers-bron {
-    margin-top: 6px;
-    font-size: 1rem;
-    font-style: italic;
-    color: #444;
-}
-
-.over-ons-jesus {
-    margin-top: 50px;
-    text-align: center;
-}
-
-.over-ons-jesus img {
-    max-width: 100%;
-    width: 420px;
-    border-radius: 20px;
-}
-
-.over-ons-main {
-    padding: 40px 20px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* ====== RESPONSIVE ====== */
-
+/* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
-    .books-grid {
-        grid-template-columns: 1fr;
-    }
+    .books-grid { grid-template-columns: 1fr; }
+    .shop-shortcuts-grid { grid-template-columns: 1fr; }
 
-    .shop-shortcuts-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .hero {
-        height: 260px;
-    }
-
-    .hero-title {
-        font-size: 2.6rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1.2rem;
-    }
+    .hero { height: 260px; }
+    .bijbelvers { font-size: 1.2rem; }
 
     .site-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 4px;
     }
+
+    .over-ons-band { padding: 20px 0 30px; }
+    .over-ons-main {
+        margin: 0 20px;
+        padding: 24px 18px;
+    }
+
+    .over-ons-main h1 { font-size: 2rem; }
+    .over-ons-main h2 { font-size: 1.4rem; }
+}
+
+@media (max-width: 480px) {
+    .shop-logo { font-size: 1.2rem; }
+
+    .hero { height: 200px; }
+    .hero-text { font-size: 0.9rem; }
+
+    .over-ons-band { padding: 16px 0 24px; }
+    .over-ons-main {
+        padding: 16px;
+        margin: 0 14px;
+    }
+
+    .over-ons-main p { font-size: 1rem; }
 }

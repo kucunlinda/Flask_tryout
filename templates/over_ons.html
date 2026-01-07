@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -7,10 +8,9 @@
 </head>
 <body>
 
+<!-- ===== TOP NAVIGATIE ===== -->
 <header class="site-header">
-    <div class="shop-logo">
-        Bijbelplezier
-    </div>
+    <div class="shop-logo">Bijbelplezier</div>
     <nav class="main-nav">
         <a href="{{ url_for('home') }}" class="nav-link">Home</a>
         <a href="{{ url_for('home') }}#boeken" class="nav-link">Boeken</a>
@@ -32,51 +32,50 @@
             Toen zei Jezus: "Laat die kinderen bij me komen. Houd ze niet tegen,
             want Gods nieuwe wereld is er juist voor hen."
         </p>
-        <div class="bijbelvers-bron">
-            Matteüs 19
-        </div>
+        <div class="bijbelvers-bron">Matteüs 19</div>
     </div>
 </section>
 
-<!-- ===== INHOUD OVER ONS ===== -->
-<main class="over-ons-main">
+<!-- ===== BLAUWE ACHTERGROND-BAND MET WITTE BOX ===== -->
+<section class="over-ons-band">
+    <main class="over-ons-main">
+        <h1>Over ons</h1>
 
-    <h1>Over ons</h1>
+        <p>
+            Welkom bij <strong>Bijbelplezier</strong>, een plek waar kinderen op een speelse en
+            liefdevolle manier kunnen kennismaken met de Bijbel en de verhalen van Jezus.
+        </p>
 
-    <p>
-        Welkom bij <strong>Bijbelplezier</strong>, een plek waar kinderen op een speelse en
-        liefdevolle manier kunnen kennismaken met de Bijbel en de verhalen van Jezus.
-    </p>
+        <p>
+            Wij geloven dat Bijbelverhalen kinderen kunnen vormen: ze leren hen over liefde,
+            moed, vergeving en vertrouwen. Daarom maken en verzamelen wij materialen die helpen
+            om deze kostbare verhalen begrijpelijk, toegankelijk en boeiend te maken voor jonge harten.
+        </p>
 
-    <p>
-        Wij geloven dat Bijbelverhalen kinderen kunnen vormen: ze leren hen over liefde,
-        moed, vergeving en vertrouwen. Daarom maken en verzamelen wij materialen die helpen
-        om deze kostbare verhalen begrijpelijk, toegankelijk en boeiend te maken voor jonge harten.
-    </p>
+        <h2>Onze producten zijn gemaakt om:</h2>
+        <ul>
+            <li>Bijbelverhalen tot leven te brengen op een manier die past bij kinderen.</li>
+            <li>Het leven en de lessen van Jezus eenvoudig en inspirerend te laten zien.</li>
+            <li>Creativiteit te stimuleren via kleurplaten, activiteiten en visueel materiaal.</li>
+            <li>Gesprekken over geloof te openen binnen gezinnen, kerken en scholen.</li>
+            <li>Leren en geloven op een natuurlijke manier te verbinden.</li>
+        </ul>
 
-    <h2>Onze producten zijn gemaakt om:</h2>
-    <ul>
-        <li>Bijbelverhalen tot leven te brengen op een manier die past bij kinderen.</li>
-        <li>Het leven en de lessen van Jezus eenvoudig en inspirerend te laten zien.</li>
-        <li>Creativiteit te stimuleren via kleurplaten, activiteiten en visueel materiaal.</li>
-        <li>Gesprekken over geloof te openen binnen gezinnen, kerken en scholen.</li>
-        <li>Leren en geloven op een natuurlijke manier te verbinden.</li>
-    </ul>
+        <p>
+            Dank je wel dat je hier bent en deel uitmaakt van onze missie om de Bijbel
+            dicht bij kinderen te brengen.
+        </p>
 
-    <p>
-        Dank je wel dat je hier bent en deel uitmaakt van onze missie om de Bijbel
-        dicht bij kinderen te brengen.
-    </p>
-
-    <!-- ===== JEZUS AFBEELDING ONDERAAN ===== -->
-    <div class="over-ons-jesus">
-        <img
-            src="{{ url_for('static', filename='img/jesus.jpg') }}"
-            alt="Jezus met kinderen"
-        >
-    </div>
-
-</main>
+        <!-- ===== JEZUS AFBEELDING ONDERAAN ===== -->
+        <div class="over-ons-jesus">
+            <img
+                src="{{ url_for('static', filename='img/jesus.jpg') }}"
+                alt="Jezus met kinderen"
+            >
+        </div>
+    </main>
+</section>
 
 </body>
 </html>
+``
