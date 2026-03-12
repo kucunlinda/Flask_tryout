@@ -157,7 +157,7 @@
           </div>
         </article>
 
-        <!-- BOEK 5 – normale kaart (links in rij 3) -->
+        <!-- BOEK 5 -->
         <article class="book-card" data-target="book5">
           <div class="book-cover-wrapper">
             <img class="book-cover"
@@ -181,7 +181,7 @@
           </div>
         </article>
 
-        <!-- BOEK 6 — Veertig dagen wandelen met God (rechts in rij 3) -->
+        <!-- BOEK 6 -->
         <article class="book-card" data-target="book6">
           <div class="book-cover-wrapper">
             <img
@@ -190,7 +190,8 @@
               alt="Boek 6 – Veertig dagen wandelen met God"
             >
           </div>
-         <h4 class="book-title">Boek 6 – Veertig dagen wandelen met God</h4>
+          <h4 class="book-title">Boek 6 – Veertig dagen wandelen met God</h4>
+
           <div id="book6" class="book-description">
             <p>Veertig dagen wandelen met God is een boek voor iedereen die wilt ontdekken wat geloven betekent
                in het echte leven.</p>
@@ -202,6 +203,28 @@
 
             <p><em>Voor wie wil groeien in geloof, rust en vertrouwen.
                Een boek om te wandelen. Met God. Elke dag.</em></p>
+          </div>
+        </article>
+
+        <!-- BOEK 7 -->
+        <article class="book-card" data-target="book7">
+          <div class="book-cover-wrapper">
+            <img
+              class="book-cover"
+              src="{{ url_for('static', filename='img/books/book 7.png') }}"
+              alt="Boek 7 – Kleur het paasverhaal"
+            >
+          </div>
+          <h4 class="book-title">Boek 7 – Kleur het paasverhaal</h4>
+
+          <div id="book7" class="book-description">
+            <p>Ga mee op reis door het Paasverhaal en ontdek stap voor stap wat Jezus heeft gedaan uit liefde voor ons.</p>
+
+            <p>In dit kleurboek ontmoet je Jezus en zijn leerlingen, beleef je Zijn intocht in Jeruzalem, het laatste avondmaal, de tuin van Getsemane, de kruisweg en de vreugde van de opstanding.</p>
+
+            <p>Elke kleurplaat vertelt een stukje van het verhaal in eenvoudige, kindvriendelijke beelden, met korte teksten die helpen om alles beter te begrijpen.</p>
+
+            <p>Kleur, lees, verwonder… en ontdek hoe groot de liefde is die Pasen vertelt.</p>
           </div>
         </article>
 
@@ -224,34 +247,41 @@
 
       <div class="contact-card">
         <form class="contact-form" method="post" action="{{ url_for('home') }}">
-          <div class="form-row">
-            <div class="form-field">
-              <label>Voornaam</label>
-              <input type="text" name="first_name" required>
-            </div>
-            <div class="form-field">
-              <label>Achternaam</label>
-              <input type="text" name="last_name" required>
-            </div>
-          </div>
+  <div class="form-row">
+    <div class="form-field">
+      <label>Voornaam</label>
+      <input type="text" name="first_name" required>
+    </div>
+    <div class="form-field">
+      <label>Achternaam</label>
+      <input type="text" name="last_name" required>
+    </div>
+  </div>
 
-          <div class="form-row">
-            <div class="form-field">
-              <label>E-mail</label>
-              <input type="email" name="email" required>
-            </div>
-            <div class="form-field">
-              <label>Telefoonnummer</label>
-              <input type="tel" name="phone">
-            </div>
-          </div>
+  <div class="form-row">
+    <div class="form-field">
+      <label>E-mail</label>
+      <input type="email" name="email" required>
+    </div>
+    <div class="form-field">
+      <label>Telefoonnummer</label>
+      <input type="tel" name="phone">
+    </div>
+  </div>
 
-          <div class="form-field">
-            <label>Bericht</label>
-            <textarea name="message" rows="4" required></textarea>
-          </div>
+  <div class="form-row">
+    <div class="form-field">
+      <label>Postcode</label>
+      <input type="text" name="postcode" pattern="[0-9]{4}" required>
+    </div>
+  </div>
 
-          <button class="btn-submit" type="submit">Verzenden</button>
+  <div class="form-field">
+    <label>Bericht</label>
+    <textarea name="message" rows="4" required></textarea>
+  </div>
+
+  <button class="btn-submit" type="submit">Verzenden</button>
         </form>
       </div>
     </section>
@@ -280,4 +310,3 @@
 
 </body>
 </html>
-``
